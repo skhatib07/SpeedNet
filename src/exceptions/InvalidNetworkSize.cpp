@@ -6,7 +6,7 @@
 
 #include <string>
 
-namespace PyreNet {
+namespace SpeedNet {
     const char* InvalidNetworkSize::what() const noexcept {
         return "Invalid network size! Network either has 0 layers inserted or 0 inputs.";
     }

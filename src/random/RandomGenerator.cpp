@@ -3,7 +3,7 @@
 //
 
 #include "RandomGenerator.h"
-namespace PyreNet {
+namespace SpeedNet {
     RandomGenerator *RandomGenerator::randomGenerator = nullptr;
     std::mutex RandomGenerator::instanceMutex;
 

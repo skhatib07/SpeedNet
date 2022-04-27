@@ -5,7 +5,7 @@
 #include <cmath>
 #include "Tanh.h"
 
-namespace PyreNet {
+namespace SpeedNet {
     const double Tanh::activate(double input) {
         return (2 / (1 + exp(-2 * input)) - 1);
     }

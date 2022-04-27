@@ -5,7 +5,7 @@
 #include <algorithm>
 #include "Relu.h"
 
-namespace PyreNet {
+namespace SpeedNet {
     const double Relu::activate(double input) {
         return std::max(0.0, input);
     }

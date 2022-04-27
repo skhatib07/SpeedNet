@@ -9,7 +9,7 @@
 #include "activations/ActivationFactory.h"
 #include "thread/LayerThreadPool.h"
 
-namespace PyreNet {
+namespace SpeedNet {
 // Constructor
 
     Layer::Layer(const int size, const int prevSize, Activation *activation) {

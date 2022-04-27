@@ -7,7 +7,7 @@
 #include "random/RandomGenerator.h"
 #include "exceptions/InvalidInputSize.h"
 
-namespace PyreNet {
+namespace SpeedNet {
     // Constructor
 
     Perceptron::Perceptron(int inputSize) {

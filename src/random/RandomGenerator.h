@@ -2,14 +2,14 @@
 // Created by Poppro on 12/3/2019.
 //
 
-#ifndef PYRENET_RANDOMGENERATOR_H
-#define PYRENET_RANDOMGENERATOR_H
+#ifndef SPEEDNET_RANDOMGENERATOR_H
+#define SPEEDNET_RANDOMGENERATOR_H
 
 #include <random>
 #include <chrono>
 #include <mutex>
 
-namespace PyreNet {
+namespace SpeedNet {
     class RandomGenerator {
     public:
         static RandomGenerator *getInstance();
@@ -33,4 +33,4 @@ namespace PyreNet {
 }
 
 
-#endif //PYRENET_RANDOMGENERATOR_H
+#endif //SPEEDNET_RANDOMGENERATOR_H

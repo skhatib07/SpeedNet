@@ -1,6 +1,6 @@
 #include "NeuralNet.h"
 
-namespace PyreNet {
+namespace SpeedNet {
     // Constructor
 
     NeuralNet::NeuralNet(int inputSize){

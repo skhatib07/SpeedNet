@@ -11,7 +11,7 @@
 #include "exceptions/InvalidLayer.h"
 #include "exceptions/InvalidNetworkSize.h"
 
-namespace PyreNet {
+namespace SpeedNet {
     class NeuralNet {
     public:
         /* Empty network with no layers currently added - a minimum of 1 input layer,

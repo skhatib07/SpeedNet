@@ -5,7 +5,7 @@
 #include <cmath>
 #include "Sigmoid.h"
 
-namespace PyreNet {
+namespace SpeedNet {
     const double Sigmoid::activate(double input) {
         return 1.0 / (1.0 + std::exp(-input));
     }

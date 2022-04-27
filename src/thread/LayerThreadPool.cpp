@@ -4,11 +4,11 @@
 
 #include "LayerThreadPool.h"
 
-namespace PyreNet {
+namespace SpeedNet {
     LayerThreadPool *LayerThreadPool::instance = nullptr;
     std::mutex LayerThreadPool::instanceMutex;
 
-    PyreNet::LayerThreadPool *LayerThreadPool::getInstance() {
+    SpeedNet::LayerThreadPool *LayerThreadPool::getInstance() {
         std::unique_lock<std::mutex> lg(instanceMutex);
         if (!instance)
             instance = new LayerThreadPool;
@@ -47,7 +47,7 @@ namespace PyreNet {
         }
     }
 
-    PyreNet::LayerThreadPool::LayerThreadPool() {
+    SpeedNet::LayerThreadPool::LayerThreadPool() {
         instance = this;
         for (int i = 0; i < 16; ++i) {
             pool.emplace_back(threadJob);

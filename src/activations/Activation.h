@@ -7,7 +7,7 @@
 
 #include "../LayerDefinition.h"
 
-namespace PyreNet {
+namespace SpeedNet {
     class Activation {
     public:
         virtual const double activate(double) = 0;

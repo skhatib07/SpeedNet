@@ -7,7 +7,7 @@
 
 #include "Activation.h"
 
-namespace PyreNet {
+namespace SpeedNet {
     class Sigmoid : public Activation {
     public:
         const double activate(double) override;

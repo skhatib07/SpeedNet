@@ -3,6 +3,6 @@
 //
 
 #include "LayerDefinition.h"
-namespace PyreNet {
+namespace SpeedNet {
     LayerDefinition::LayerDefinition(int size, LayerDefinition::activationType activation) : size(size), activation(activation) {}
 }

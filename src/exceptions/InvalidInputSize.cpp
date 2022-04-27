@@ -4,7 +4,7 @@
 
 #include "InvalidInputSize.h"
 
-namespace PyreNet {
+namespace SpeedNet {
     const char* InvalidInputSize::what() const noexcept {
         return "Invalid size supplied to Perceptron.";
     }

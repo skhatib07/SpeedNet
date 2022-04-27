@@ -2,16 +2,16 @@
 // Created by Poppro on 12/4/2019.
 //
 
-#ifndef PYRENET_INVALIDINPUTSIZE_H
-#define PYRENET_INVALIDINPUTSIZE_H
+#ifndef SPEEDNET_INVALIDINPUTSIZE_H
+#define SPEEDNET_INVALIDINPUTSIZE_H
 
 #include <exception>
 
-namespace PyreNet {
+namespace SpeedNet {
     class InvalidInputSize : public std::exception {
     public:
         const char *what() const noexcept override;
     };
 }
 
-#endif //PYRENET_INVALIDINPUTSIZE_H
+#endif //SPEEDNET_INVALIDINPUTSIZE_H

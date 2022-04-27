@@ -13,7 +13,7 @@
 
 #include "Activation.h"
 
-namespace PyreNet {
+namespace SpeedNet {
     class ActivationFactory {
     public:
         static ActivationFactory *getInstance();

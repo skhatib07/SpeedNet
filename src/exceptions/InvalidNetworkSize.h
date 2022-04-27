@@ -2,12 +2,12 @@
 // Created by Samer Khatib on 4/26/22.
 //
 
-#ifndef PYRENET_INVALIDNETWORKSIZE_H
-#define PYRENET_INVALIDNETWORKSIZE_H
+#ifndef SPEEDNET_INVALIDNETWORKSIZE_H
+#define SPEEDNET_INVALIDNETWORKSIZE_H
 
 #include <exception>
 
-namespace PyreNet {
+namespace SpeedNet {
     class InvalidNetworkSize : public std::exception {
     public:
         const char *what() const noexcept override;
@@ -15,4 +15,4 @@ namespace PyreNet {
 }
 
 
-#endif //PYRENET_INVALIDNETWORKSIZE_H
+#endif //SPEEDNET_INVALIDNETWORKSIZE_H

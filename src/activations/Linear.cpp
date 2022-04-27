@@ -4,7 +4,7 @@
 
 #include "Linear.h"
 
-namespace PyreNet {
+namespace SpeedNet {
     const double Linear::activate(double input) {
         return input;
     }

@@ -11,7 +11,7 @@
 #include "Perceptron.h"
 #include "activations/Activation.h"
 
-namespace PyreNet {
+namespace SpeedNet {
     class Layer {
     public:
         // Size of layer, size of previous layer (input to layer), activation function

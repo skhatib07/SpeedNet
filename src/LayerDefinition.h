@@ -5,7 +5,7 @@
 #ifndef CPPNN_LAYERDEFINITION_H
 #define CPPNN_LAYERDEFINITION_H
 
-namespace PyreNet {
+namespace SpeedNet {
     class LayerDefinition {
     public:
         enum activationType {

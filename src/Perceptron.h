@@ -10,7 +10,7 @@
 
 #include "activations/Activation.h"
 
-namespace PyreNet {
+namespace SpeedNet {
     class Perceptron {
     public:
         explicit Perceptron(int);

@@ -9,7 +9,7 @@
 #include "Step.h"
 #include "Tanh.h"
 
-namespace PyreNet {
+namespace SpeedNet {
     ActivationFactory *ActivationFactory::activationFactory = nullptr;
     std::mutex ActivationFactory::instanceMutex;
 

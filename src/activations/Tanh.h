@@ -2,12 +2,12 @@
 // Created by Poppro on 12/3/2019.
 //
 
-#ifndef PYRENET_TANH_H
-#define PYRENET_TANH_H
+#ifndef SPEEDNET_TANH_H
+#define SPEEDNET_TANH_H
 
 #include "Activation.h"
 
-namespace PyreNet {
+namespace SpeedNet {
     class Tanh : public Activation {
         const double activate(double) override;
         const LayerDefinition::activationType type() override;
@@ -15,4 +15,4 @@ namespace PyreNet {
 }
 
 
-#endif //PYRENET_TANH_H
+#endif //SPEEDNET_TANH_H

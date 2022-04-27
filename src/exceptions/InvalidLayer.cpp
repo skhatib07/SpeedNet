@@ -6,7 +6,7 @@
 
 #include <string>
 
-namespace PyreNet {
+namespace SpeedNet {
     const char* InvalidLayer::what() const noexcept {
         return "Invalid layer selection passed to network.";
     }

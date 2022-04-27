@@ -2,8 +2,8 @@
 // Created by Poppro on 12/27/2020.
 //
 
-#ifndef PYRENET_LAYERTHREADPOOL_H
-#define PYRENET_LAYERTHREADPOOL_H
+#ifndef SPEEDNET_LAYERTHREADPOOL_H
+#define SPEEDNET_LAYERTHREADPOOL_H
 
 #include <condition_variable>
 #include <vector>
@@ -13,7 +13,7 @@
 #include "../Perceptron.h"
 #include "../activations/Activation.h"
 
-namespace PyreNet {
+namespace SpeedNet {
     class LayerThreadPool {
     public:
         static LayerThreadPool* getInstance();
@@ -52,4 +52,4 @@ namespace PyreNet {
 }
 
 
-#endif //PYRENET_LAYERTHREADPOOL_H
+#endif //SPEEDNET_LAYERTHREADPOOL_H

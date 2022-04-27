@@ -4,7 +4,7 @@
 
 #include "Step.h"
 
-namespace PyreNet {
+namespace SpeedNet {
     const double Step::activate(double input) {
         return (input >= 0) ? 1 : 0;
     }
