@@ -3,15 +3,15 @@
 //
 
 #include <iostream>
-#include "../src/PyreNet.h"
+#include "../src/SpeedNet.h"
 
 void stressTest() {
-    std::vector<PyreNet::LayerDefinition> layerDefs;
-    layerDefs.emplace_back(50, PyreNet::LayerDefinition::activationType::relu);
-    layerDefs.emplace_back(50, PyreNet::LayerDefinition::activationType::relu);
-    layerDefs.emplace_back(50, PyreNet::LayerDefinition::activationType::relu);
-    layerDefs.emplace_back(2, PyreNet::LayerDefinition::activationType::relu);
-    PyreNet::NeuralNet nn(5, layerDefs);
+    std::vector<SpeedNet::LayerDefinition> layerDefs;
+    layerDefs.emplace_back(50, SpeedNet::LayerDefinition::activationType::relu);
+    layerDefs.emplace_back(50, SpeedNet::LayerDefinition::activationType::relu);
+    layerDefs.emplace_back(50, SpeedNet::LayerDefinition::activationType::relu);
+    layerDefs.emplace_back(2, SpeedNet::LayerDefinition::activationType::relu);
+    SpeedNet::NeuralNet nn(5, layerDefs);
     nn.mutate_uniform(0, 0.1);
     std::vector<double> input{0,1,2,3,4};
     std::cout << "Stress test complete" << std::endl;
@@ -19,12 +19,12 @@ void stressTest() {
 
 void multiThreadedStressTest() {
     int threadCount = 10;
-    std::vector<PyreNet::LayerDefinition> layerDefs;
-    layerDefs.emplace_back(50, PyreNet::LayerDefinition::activationType::relu);
-    layerDefs.emplace_back(50, PyreNet::LayerDefinition::activationType::relu);
-    layerDefs.emplace_back(50, PyreNet::LayerDefinition::activationType::relu);
-    layerDefs.emplace_back(2, PyreNet::LayerDefinition::activationType::relu);
-    std::vector<PyreNet::NeuralNet> nns;
+    std::vector<SpeedNet::LayerDefinition> layerDefs;
+    layerDefs.emplace_back(50, SpeedNet::LayerDefinition::activationType::relu);
+    layerDefs.emplace_back(50, SpeedNet::LayerDefinition::activationType::relu);
+    layerDefs.emplace_back(50, SpeedNet::LayerDefinition::activationType::relu);
+    layerDefs.emplace_back(2, SpeedNet::LayerDefinition::activationType::relu);
+    std::vector<SpeedNet::NeuralNet> nns;
     for (int i = 0; i < threadCount; ++i) {
         nns.emplace_back(5, layerDefs);
         nns.back().mutate_uniform(0, 1);
@@ -33,7 +33,7 @@ void multiThreadedStressTest() {
 
     std::vector<std::thread> pool;
     for (int i = 0; i < threadCount; ++i)
-        pool.emplace_back(&PyreNet::NeuralNet::predict, nns[i], input);
+        pool.emplace_back(&SpeedNet::NeuralNet::predict, nns[i], input);
 
     for (std::thread& t : pool)
         t.join();
@@ -42,12 +42,12 @@ void multiThreadedStressTest() {
 }
 
 void serializeTest() {
-    std::vector<PyreNet::LayerDefinition> layerDefs;
-    layerDefs.emplace_back(50, PyreNet::LayerDefinition::activationType::relu);
-    layerDefs.emplace_back(50, PyreNet::LayerDefinition::activationType::relu);
-    layerDefs.emplace_back(50, PyreNet::LayerDefinition::activationType::relu);
-    layerDefs.emplace_back(2, PyreNet::LayerDefinition::activationType::relu);
-    PyreNet::NeuralNet nn(5, layerDefs);
+    std::vector<SpeedNet::LayerDefinition> layerDefs;
+    layerDefs.emplace_back(50, SpeedNet::LayerDefinition::activationType::relu);
+    layerDefs.emplace_back(50, SpeedNet::LayerDefinition::activationType::relu);
+    layerDefs.emplace_back(50, SpeedNet::LayerDefinition::activationType::relu);
+    layerDefs.emplace_back(2, SpeedNet::LayerDefinition::activationType::relu);
+    SpeedNet::NeuralNet nn(5, layerDefs);
     nn.mutate_uniform(0,2);
     std::vector<double> input{0,1,2,3,4};
     double output = nn.predict(input)[0];
@@ -64,7 +64,7 @@ void serializeTest() {
         exit(EXIT_FAILURE);
 
     ss << nn;
-    PyreNet::NeuralNet nn2(ss);
+    SpeedNet::NeuralNet nn2(ss);
     if (std::abs(nn2.predict(input)[0] - output) > 1)
         exit(EXIT_FAILURE);
 
