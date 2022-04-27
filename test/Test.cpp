@@ -5,6 +5,18 @@
 #include <iostream>
 #include "../src/SpeedNet.h"
 
+void layerAddTest(){
+    SpeedNet::NeuralNet nn(5);
+    nn.add(SpeedNet::LayerDefinition(50, SpeedNet::LayerDefinition::activationType::relu));
+    nn.add(SpeedNet::LayerDefinition(50, SpeedNet::LayerDefinition::activationType::relu));
+    nn.add(SpeedNet::LayerDefinition(50, SpeedNet::LayerDefinition::activationType::relu));
+    nn.add(SpeedNet::LayerDefinition(2, SpeedNet::LayerDefinition::activationType::relu));
+    nn.mutate_uniform(0, 0.1);
+    std::vector<double> input{0,1,2,3,4};
+    std::vector<double> output = nn.predict(input);
+    std::cout << "Individual Layer add test complete" << std::endl;
+}
+
 void stressTest() {
     std::vector<SpeedNet::LayerDefinition> layerDefs;
     layerDefs.emplace_back(50, SpeedNet::LayerDefinition::activationType::relu);
@@ -14,6 +26,7 @@ void stressTest() {
     SpeedNet::NeuralNet nn(5, layerDefs);
     nn.mutate_uniform(0, 0.1);
     std::vector<double> input{0,1,2,3,4};
+    std::vector<double> output = nn.predict(input);
     std::cout << "Stress test complete" << std::endl;
 }
 
@@ -72,6 +85,7 @@ void serializeTest() {
 }
 
 int main() {
+    layerAddTest();
     stressTest();
     multiThreadedStressTest();
     serializeTest();
