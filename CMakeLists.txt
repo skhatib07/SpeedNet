@@ -1,13 +1,13 @@
 cmake_minimum_required(VERSION 3.15)
-project(PyreNet)
+project(SpeedNet)
 
 SET(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_FLAGS -pthread)
 enable_testing()
 
-ADD_EXECUTABLE(PyreNetTest
+ADD_EXECUTABLE(SpeedNetTest
         test/Test.cpp
-        src/PyreNet.h
+        src/SpeedNet.h
         src/NeuralNet.cpp
         src/NeuralNet.h
         src/Layer.cpp
@@ -42,8 +42,8 @@ ADD_EXECUTABLE(PyreNetTest
         src/thread/LayerThreadPool.h
         )
 
-ADD_LIBRARY(PyreNet STATIC
-        src/PyreNet.h
+ADD_LIBRARY(SpeedNet STATIC
+        src/SpeedNet.h
         src/NeuralNet.cpp
         src/NeuralNet.h
         src/Layer.cpp
@@ -79,5 +79,5 @@ ADD_LIBRARY(PyreNet STATIC
 
 
 ADD_TEST(System_Test
-        ./PyreNetTest
+        ./SpeedNetTest
         )
