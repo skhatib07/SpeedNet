@@ -476,7 +476,7 @@ void xorTest() {
     // Train the network
     double learningRate = 0.3;
     double finalError = 0.0;
-    int maxEpochs = 10000;
+    int maxEpochs = 15000;
     
     for (int epoch = 0; epoch < maxEpochs; epoch++) {
         double totalError = 0.0;
