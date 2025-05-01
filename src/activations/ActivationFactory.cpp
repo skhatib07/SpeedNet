@@ -8,6 +8,10 @@
 #include "Linear.h"
 #include "Step.h"
 #include "Tanh.h"
+#include "LeakyRelu.h"
+#include "Elu.h"
+#include "Softplus.h"
+#include "Selu.h"
 
 namespace SpeedNet {
     ActivationFactory *ActivationFactory::activationFactory = nullptr;
@@ -46,6 +50,18 @@ namespace SpeedNet {
             case LayerDefinition::relu: {
                 return new Relu();
             }
+            case LayerDefinition::leakyRelu: {
+                return new LeakyRelu();
+            }
+            case LayerDefinition::elu: {
+                return new Elu();
+            }
+            case LayerDefinition::softplus: {
+                return new Softplus();
+            }
+            case LayerDefinition::selu: {
+                return new Selu();
+            }
             default: {
                 throw std::exception();
             }
@@ -69,6 +85,18 @@ namespace SpeedNet {
             case LayerDefinition::relu: {
                 return "relu";
             }
+            case LayerDefinition::leakyRelu: {
+                return "leakyRelu";
+            }
+            case LayerDefinition::elu: {
+                return "elu";
+            }
+            case LayerDefinition::softplus: {
+                return "softplus";
+            }
+            case LayerDefinition::selu: {
+                return "selu";
+            }
             default: {
                 throw std::exception();
             }
@@ -86,6 +114,14 @@ namespace SpeedNet {
             return LayerDefinition::sigmoid;
         } else if (activation == "relu") {
             return LayerDefinition::relu;
+        } else if (activation == "leakyRelu") {
+            return LayerDefinition::leakyRelu;
+        } else if (activation == "elu") {
+            return LayerDefinition::elu;
+        } else if (activation == "softplus") {
+            return LayerDefinition::softplus;
+        } else if (activation == "selu") {
+            return LayerDefinition::selu;
         } else {
             throw std::exception();
         }

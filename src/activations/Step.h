@@ -9,7 +9,9 @@
 
 namespace SpeedNet {
     class Step : public Activation {
+    public:
         const double activate(double) override;
+        const double derivative(double) override;
         const LayerDefinition::activationType type() override;
     };
 }

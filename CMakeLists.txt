@@ -30,6 +30,14 @@ ADD_EXECUTABLE(SpeedNetTest
         src/activations/Step.h
         src/activations/Tanh.cpp
         src/activations/Tanh.h
+        src/activations/LeakyRelu.cpp
+        src/activations/LeakyRelu.h
+        src/activations/Elu.cpp
+        src/activations/Elu.h
+        src/activations/Softplus.cpp
+        src/activations/Softplus.h
+        src/activations/Selu.cpp
+        src/activations/Selu.h
         src/exceptions/InvalidInputSize.cpp
         src/exceptions/InvalidInputSize.h
         src/exceptions/InvalidLayer.cpp
@@ -66,6 +74,14 @@ ADD_LIBRARY(SpeedNet STATIC
         src/activations/Step.h
         src/activations/Tanh.cpp
         src/activations/Tanh.h
+        src/activations/LeakyRelu.cpp
+        src/activations/LeakyRelu.h
+        src/activations/Elu.cpp
+        src/activations/Elu.h
+        src/activations/Softplus.cpp
+        src/activations/Softplus.h
+        src/activations/Selu.cpp
+        src/activations/Selu.h
         src/exceptions/InvalidInputSize.cpp
         src/exceptions/InvalidInputSize.h
         src/exceptions/InvalidLayer.cpp

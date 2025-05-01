@@ -11,6 +11,11 @@ namespace SpeedNet {
     class Activation {
     public:
         virtual const double activate(double) = 0;
+        
+        // Derivative of the activation function with respect to its input
+        // This is needed for backpropagation
+        virtual const double derivative(double) = 0;
+        
         virtual const LayerDefinition::activationType type() = 0;
     };
 }

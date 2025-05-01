@@ -18,6 +18,15 @@ namespace SpeedNet {
         void calculate(const std::vector<double> &, Activation *);
 
         double getValue() const;
+        
+        // Get the raw weighted sum before activation (needed for backpropagation)
+        double getWeightedSum() const;
+        
+        // Update weights based on delta, inputs, and learning rate
+        void updateWeights(double delta, const std::vector<double>& inputs, double learningRate);
+        
+        // Get the weights of this perceptron
+        const std::vector<double>& getWeights() const;
 
         void mutate_uniform(const double, const double);
 
@@ -30,6 +39,7 @@ namespace SpeedNet {
     private:
         std::vector<double> weights;
         double cachedValue;
+        double cachedWeightedSum; // Store the weighted sum for backpropagation
         int inputSize;
     };
 }

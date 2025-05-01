@@ -1,14 +1,14 @@
 //
-// Created by hunter harloff on 2019-12-01.
+// Created on 2025-05-01.
 //
 
-#ifndef CPPNN_SIGMOID_H
-#define CPPNN_SIGMOID_H
+#ifndef CPPNN_SOFTPLUS_H
+#define CPPNN_SOFTPLUS_H
 
 #include "Activation.h"
 
 namespace SpeedNet {
-    class Sigmoid : public Activation {
+    class Softplus : public Activation {
     public:
         const double activate(double) override;
         const double derivative(double) override;
@@ -17,4 +17,4 @@ namespace SpeedNet {
 }
 
 
-#endif //CPPNN_SIGMOID_H
+#endif //CPPNN_SOFTPLUS_H

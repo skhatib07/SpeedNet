@@ -26,6 +26,7 @@ namespace SpeedNet {
             weightedSum += input[i] * this->weights[i];
         }
         weightedSum += 1 * this->weights.back(); // bias term
+        this->cachedWeightedSum = weightedSum; // Store for backpropagation
         this->cachedValue = activation->activate(weightedSum);
     }
 
@@ -47,6 +48,23 @@ namespace SpeedNet {
 
     double Perceptron::getValue() const {
         return this->cachedValue;
+    }
+    
+    double Perceptron::getWeightedSum() const {
+        return this->cachedWeightedSum;
+    }
+    
+    void Perceptron::updateWeights(double delta, const std::vector<double>& inputs, double learningRate) {
+        // Update weights based on delta and inputs
+        for (int i = 0; i < this->inputSize; i++) {
+            this->weights[i] += learningRate * delta * inputs[i];
+        }
+        // Update bias weight (using 1 as input)
+        this->weights.back() += learningRate * delta * 1.0;
+    }
+    
+    const std::vector<double>& Perceptron::getWeights() const {
+        return this->weights;
     }
 
     // Serialize

@@ -13,7 +13,11 @@ namespace SpeedNet {
             linear,
             sigmoid,
             tanh,
-            relu
+            relu,
+            leakyRelu,
+            elu,
+            softplus,
+            selu
         };
 
         // Constructor to be supplied layer size, desired activation function

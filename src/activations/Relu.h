@@ -11,6 +11,7 @@ namespace SpeedNet {
     class Relu : public Activation {
     public:
         const double activate(double) override;
+        const double derivative(double) override;
         const LayerDefinition::activationType type() override;
     };
 }

@@ -27,6 +27,17 @@ namespace SpeedNet {
         // Predict output
         std::vector<double> predict(const std::vector<double>&);
 
+        // Train the network using backpropagation
+        // Returns the mean squared error of the training example
+        double train(const std::vector<double>& input, const std::vector<double>& target, double learningRate);
+        
+        // Train the network using a batch of examples
+        // Returns the average mean squared error across all examples
+        double trainBatch(const std::vector<std::vector<double>>& inputs,
+                          const std::vector<std::vector<double>>& targets,
+                          double learningRate,
+                          int batchSize = 1);
+
         //Add new layer to network
         void add(const LayerDefinition &);
 
@@ -48,6 +59,17 @@ namespace SpeedNet {
         friend std::istream& operator>>(std::istream& is, NeuralNet& nn);
 
     private:
+        // Backpropagate the error through the network
+        void backpropagate(const std::vector<double>& target, std::vector<std::vector<double>>& layerOutputs, double learningRate);
+        
+        // Update the weights based on the calculated gradients
+        void updateWeights(const std::vector<std::vector<double>>& layerOutputs,
+                           const std::vector<std::vector<double>>& deltas,
+                           double learningRate);
+        
+        // Calculate the mean squared error between predicted and target values
+        double calculateError(const std::vector<double>& predicted, const std::vector<double>& target);
+        
         int inputSize;
         std::vector<Layer> layers;
     };
