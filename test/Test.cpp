@@ -8,6 +8,7 @@
 #include <algorithm>
 #include <chrono>
 #include <random>
+#include <atomic>
 #include "../src/SpeedNet.h"
 
 // Original tests
