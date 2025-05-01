@@ -1,4 +1,4 @@
-[![CI Status](https://github.com/skhatib07/SpeedNet/workflows/CMake/badge.svg?branch=main)](https://github.com/skhatib07/SpeedNet/actions?query=branch%3Amain)
+[![CMake](https://github.com/skhatib07/SpeedNet/actions/workflows/cmake.yml/badge.svg)](https://github.com/skhatib07/SpeedNet/actions/workflows/cmake.yml)
 # SpeedNet - A rework of PyreNet
 ## About
 ### Intended Use
