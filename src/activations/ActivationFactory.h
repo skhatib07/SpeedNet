@@ -10,6 +10,7 @@
 
 #include <unordered_map>
 #include <mutex>
+#include <string>
 
 #include "Activation.h"
 
