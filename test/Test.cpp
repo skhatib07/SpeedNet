@@ -1331,11 +1331,11 @@ int main() {
     // Test the neural network with a simple layer addition
     layerAddTest();
 
-    // // Test the speed of the neural network on a large dataset using a single thread
-    // stressTest();
+    // Test the speed of the neural network on a large dataset using a single thread
+    stressTest();
 
-    // // Test the speed of the neural network on a large dataset using multiple threads
-    // multiThreadedStressTest();
+    // Test the speed of the neural network on a large dataset using multiple threads
+    multiThreadedStressTest();
 
     // Test serialization and deserialization of the neural network
     serializeTest();
