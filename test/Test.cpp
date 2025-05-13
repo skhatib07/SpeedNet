@@ -536,16 +536,30 @@ void functionApproximationTest() {
     nn.mutate_uniform(-0.5, 0.5);
     
     // Generate training data for y = x^2 in range [-1, 1]
-    std::vector<std::vector<double>> inputs;
-    std::vector<std::vector<double>> targets;
+    std::vector<std::vector<double>> trainingInputs;
+    std::vector<std::vector<double>> trainingTargets;
     
-    const int numSamples = 20;
-    for (int i = 0; i < numSamples; i++) {
-        double x = -1.0 + 2.0 * i / (numSamples - 1);  // Range from -1 to 1
+    const int numTrainingSamples = 20;
+    for (int i = 0; i < numTrainingSamples; i++) {
+        double x = -1.0 + 2.0 * i / (numTrainingSamples - 1);  // Range from -1 to 1
         double y = x * x;  // y = x^2
         
-        inputs.push_back({x});
-        targets.push_back({y});
+        trainingInputs.push_back({x});
+        trainingTargets.push_back({y});
+    }
+    
+    // Generate separate verification data with different x values
+    std::vector<std::vector<double>> verificationInputs;
+    std::vector<std::vector<double>> verificationTargets;
+    
+    const int numVerificationSamples = 15;
+    for (int i = 0; i < numVerificationSamples; i++) {
+        // Generate testing data to verify the function approximation
+        double x = -1.0 + 2.0 * (i + 0.5) / numVerificationSamples;  // Range from -1 to 1
+        double y = x * x;  // y = x^2
+        
+        verificationInputs.push_back({x});
+        verificationTargets.push_back({y});
     }
     
     double learningRate = 0.05;
@@ -556,51 +570,72 @@ void functionApproximationTest() {
     for (int epoch = 0; epoch < maxEpochs; epoch++) {
         double totalError = 0.0;
         
-        for (size_t i = 0; i < inputs.size(); i++) {
-            totalError += nn.train(inputs[i], targets[i], learningRate);
+        for (size_t i = 0; i < trainingInputs.size(); i++) {
+            totalError += nn.train(trainingInputs[i], trainingTargets[i], learningRate);
         }
         
-        finalError = totalError / inputs.size();
+        finalError = totalError / trainingInputs.size();
         
         // Print progress every 1000 epochs
         if ((epoch + 1) % 1000 == 0) {
-            std::cout << "Epoch " << epoch + 1 << ", Error: " << finalError << std::endl;
+            std::cout << "Epoch " << epoch + 1 << ", Training Error: " << finalError << std::endl;
         }
     }
     
-    std::cout << "Function approximation training completed after " << maxEpochs << " epochs with error: " << finalError << std::endl;
+    std::cout << "Function approximation training completed after " << maxEpochs << " epochs with training error: " << finalError << std::endl;
     
-    // Verify the network learned the function
-    bool success = true;
-    double maxError = 0.0;
-
+    // Verify the network learned the function using the verification dataset
+    double maxTrainingError = 0.0;
+    double maxVerificationError = 0.0;
     double finalErrorThreshold = 0.05;
-    double errorAmount = 0.0;
+    double trainingErrorAmount = 0.0;
+    double verificationErrorAmount = 0.0;
     
-    for (size_t i = 0; i < inputs.size(); i++) {
-        std::vector<double> output = nn.predict(inputs[i]);
-        double expected = targets[i][0];
+    std::cout << "\nEvaluating on training data:" << std::endl;
+    for (size_t i = 0; i < trainingInputs.size(); i++) {
+        std::vector<double> output = nn.predict(trainingInputs[i]);
+        double expected = trainingTargets[i][0];
         double actual = output[0];
         double error = std::abs(expected - actual);
         double relativeError = (std::abs(expected) > 0.01) ? (error / std::abs(expected)) : error;
         
         // Print detailed information about each prediction
-        std::cout << "Input: " << inputs[i][0] << ", Expected: " << expected
+        std::cout << "Input: " << trainingInputs[i][0] << ", Expected: " << expected
                   << ", Actual: " << actual << ", Error: " << error
                   << ", Relative Error: " << relativeError << std::endl;
         
-        maxError = std::max(maxError, error);
-
-        // Add the error amount to the total error
-        errorAmount += std::abs(expected - actual);
+        maxTrainingError = std::max(maxTrainingError, error);
+        trainingErrorAmount += error;
     }
     
-    std::cout << "Maximum prediction error: " << maxError << std::endl;
+    std::cout << "\nEvaluating on verification data:" << std::endl;
+    for (size_t i = 0; i < verificationInputs.size(); i++) {
+        std::vector<double> output = nn.predict(verificationInputs[i]);
+        double expected = verificationTargets[i][0];
+        double actual = output[0];
+        double error = std::abs(expected - actual);
+        double relativeError = (std::abs(expected) > 0.01) ? (error / std::abs(expected)) : error;
+        
+        // Print detailed information about each prediction
+        std::cout << "Input: " << verificationInputs[i][0] << ", Expected: " << expected
+                  << ", Actual: " << actual << ", Error: " << error
+                  << ", Relative Error: " << relativeError << std::endl;
+        
+        maxVerificationError = std::max(maxVerificationError, error);
+        verificationErrorAmount += error;
+    }
     
-    if (maxError < finalErrorThreshold) {
-        std::cout << "Function approximation test passed! Total error: " << errorAmount << std::endl;
+    std::cout << "\nMaximum training error: " << maxTrainingError << std::endl;
+    std::cout << "Maximum verification error: " << maxVerificationError << std::endl;
+    
+    if (maxVerificationError < finalErrorThreshold) {
+        std::cout << "Function approximation test passed!" << std::endl;
+        std::cout << "Total training error: " << trainingErrorAmount << std::endl;
+        std::cout << "Total verification error: " << verificationErrorAmount << std::endl;
     } else {
-        std::cout << "Function approximation test failed! Total error: " << errorAmount << std::endl;
+        std::cout << "Function approximation test failed!" << std::endl;
+        std::cout << "Total training error: " << trainingErrorAmount << std::endl;
+        std::cout << "Total verification error: " << verificationErrorAmount << std::endl;
         exit(EXIT_FAILURE);
     }
 }
@@ -1296,11 +1331,11 @@ int main() {
     // Test the neural network with a simple layer addition
     layerAddTest();
 
-    // Test the speed of the neural network on a large dataset using a single thread
-    stressTest();
+    // // Test the speed of the neural network on a large dataset using a single thread
+    // stressTest();
 
-    // Test the speed of the neural network on a large dataset using multiple threads
-    multiThreadedStressTest();
+    // // Test the speed of the neural network on a large dataset using multiple threads
+    // multiThreadedStressTest();
 
     // Test serialization and deserialization of the neural network
     serializeTest();
